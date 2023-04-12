@@ -1,0 +1,404 @@
+{
+  "$id": "https://open.scrud.dev/schema/regions.v1.json",
+  "$comment": "Used to define top-level administrative divisions, such as states, non-state special administrative regions, regions that need to be listed independently, and organizations with geographic coverage. For data collection only, not legal definition.",
+  "$defs": {
+    "string_array": {
+      "description": "An array of strings, reduced to a single string when there is only one element",
+      "type": ["string", "array"],
+      "items": {
+        "type": "string"
+      }
+    },
+    "pattern": {
+      "type": ["string", "object"],
+      "description": "正则表达式，默认为不区分编程语言/流派风格的正则表达式",
+      "properties": {
+        "wildcard": {
+          "type": "string",
+          "description": "不区分编程语言/流派风格的正则表达式，默认"
+        },
+        "pcre": {
+          "type": "string",
+          "description": "兼容 PCRE 的正则表达式"
+        },
+        "posix": {
+          "type": "string",
+          "description": "兼容 POSIX 的正则表达式"
+        },
+        "javascript": {
+          "type": "string",
+          "description": "适用于 JavaScript 的正则表达式"
+        },
+        "dart": {
+          "type": "string",
+          "description": "适用于 Dart 程序语言的正则表达式"
+        },
+        "go": {
+          "type": "string",
+          "description": "适用于 go 程序语言的正则表达式"
+        },
+        "php": {
+          "type": "string",
+          "description": "适用于 PHP 程序语言的正则表达式"
+        },
+        "java": {
+          "type": "string",
+          "description": "适用于 Java 程序语言的正则表达式"
+        },
+        "python": {
+          "type": "string",
+          "description": "适用于 python 程序语言的正则表达式"
+        },
+        "shell": {
+          "type": "string",
+          "description": "适用于 shell 的正则表达式"
+        },
+        "ruby": {
+          "type": "string",
+          "description": "适用于 ruby 的正则表达式"
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "string": {
+      "type": "object",
+      "properties": {
+        "length": {
+          "type": "integer"
+        },
+        "min_length": {
+          "type": "integer"
+        },
+        "max_length": {
+          "type": "integer"
+        },
+        "pattern": {
+          "$ref": "#/$defs/pattern"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "required": ["regions"],
+  "properties": {
+    "tags": {
+      "type":"array",
+      "description": "用于对顶级区域信息进行分组，有两种模式：oneOf/allOf",
+      "required": ["title", "keywords"],
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "oneOf": {
+            "type": ["string", "array"],
+            "description": "regions 的 tags 属性包含此处列出的任一个关键字",
+            "items": {
+              "type": "string",
+              "minItems": 1
+            }
+          },
+          "allOf": {
+            "type": ["string", "array"],
+            "description": "regions 的 tags 属性包含此处列出的全部关键字",
+            "items": {
+              "type": "string",
+              "minItems": 1
+            }
+          }
+        }
+      }
+    },
+    "regions": {
+      "type":"array",
+      "items": {
+        "type": "object",
+        "required": ["native_name"],
+        "properties": {
+          "id": {
+            "type": ["integer", "string"],
+            "description": "标识符"
+          },
+          "path": {
+            "type": "array",
+            "description": "标识路径，从根元素到父元素 ID 的数组",
+            "items": {
+              "type": "string"
+            }
+          },
+          "code": {
+            "type": "object",
+            "description": "标准代码",
+            "properties": {
+              "idd": {
+                "type": ["integer", "array"],
+                "description": "由 ITU 国际电信联盟制定的国际呼叫代码前缀 International direct dialing, 例如中国为 86",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "alpha2": {
+                "type": "string",
+                "description": "ISO 3166/Alpha 2 code"
+              },
+              "alpha3": {
+                "type": "string",
+                "description": "ISO 3166/Alpha 3 code"
+              },
+              "numeric": {
+                "type": "integer",
+                "description": "ISO 3166 标准数值编码，转换为字符串时对齐为 3 位数字，在左侧补 0"
+              },
+              "tld": {
+                "type": "string",
+                "description": "国家/地区的互联网顶级域名 ccTLDs top-level domain"
+              }
+            }
+          },
+          "native_name": {
+            "type": "string",
+            "description": "原始名字，不需要翻译。当地本来的名称，访问者语言无关"
+          },
+          "name": {
+            "type": "string",
+            "description": "标题，访问者语言相关的名字"
+          },
+          "short_name": {
+            "type": "string",
+            "description": "简称"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ready", "pending"],
+            "default": "ready",
+            "description": "状态: ready=就绪状态, pending=未准备好/维护中"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "tags": {
+            "type": ["string", "array"],
+            "description": "分组标签，仅限顶层区域定义使用，下层区域从属于上层区域的分组, SAR=特别行政区(Special Administrative Region)",
+            "items": {
+              "type": "string",
+              "description": "分组标签，仅限顶层区域定义使用，下层区域从属于上层区域的分组, SAR=特别行政区(Special Administrative Region)",
+              "examples": ["SAR", "city", "country", "district", "state", "province", "Africa","Africa", "Europe", "Oceania", "North America", "South America", "Pacific", "Atlantic", "Indian Ocean"]
+            },
+            "examples": ["SAR", "city", "country", "district", "state", "province", "Africa","Africa", "Europe", "Oceania", "North America", "South America", "Pacific", "Atlantic", "Indian Ocean"]
+          },
+          "pending": {
+            "type": "string",
+            "description": "未决或有争议的"
+          },
+          "flag_emoji": {
+            "type": "string",
+            "description": "以表情符号表示的图标"
+          },
+          "icon": {
+            "type": "string",
+            "description": "图标文件 URL"
+          },
+          "postal": {
+            "type": ["string", "object"],
+            "description": "邮编(zip/postal code)，顶级区域使用编码定义",
+            "properties": {
+              "length": {
+                "type": "integer"
+              },
+              "min_length": {
+                "type": "integer"
+              },
+              "max_length": {
+                "type": "integer"
+              },
+              "pattern": {
+                "$ref": "#/$defs/pattern"
+              }
+            }
+          },
+          "telephone": {
+            "type": ["array", "object", "string"],
+            "description": "电讯/电话使用情况定义，使用数组形式定义多种电话类型，使用字符串形式定义本地电话网分区号码",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["landline", "mobile", "all"],
+                "description": "landline=固定电话/陆上有线电话/座机, mobile=便携/移动电话，含卫星电话, all=不区分"
+              },
+              "ddd": {
+                "type": "string",
+                "description": "DDD：Domestic Direct Dial, 本地电话网外呼叫的前缀，如在中国拨打非本地的固定电话时要在前面加目的地长途电话区号"
+              },
+              "sms": {
+                "type": "string",
+                "enum": ["never", "all", "send", "receive"],
+                "description": "是否支持收发短信息: send=支持发送, receive=支持接收, all=支持收发"
+              },
+              "length": {
+                "type": "integer"
+              },
+              "min_length": {
+                "type": "integer"
+              },
+              "max_length": {
+                "type": "integer"
+              },
+              "pattern": {
+                "$ref": "#/$defs/pattern",
+                "description": "电话号码验证的正则表达式"
+              }
+            },
+            "items": {
+              "$ref":"#/$defs/string"
+            }
+          },
+          "currencies": {
+            "type": "array",
+            "description": "货币定义，排在首位的为主要货币",
+            "items": {
+              "type": "object",
+              "properties": {
+                "symbol": {
+                  "type": "string",
+                  "description": "通用的货币符号"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "ISO 货币代码"
+                },
+                "native_name": {
+                  "type": "string",
+                  "description": "本地名称"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "名称"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "货币体系的名称，如人民币"
+                },
+                "minors": {
+                  "type": "array",
+                  "description": "次要币值定义，如人民币中的角和分",
+                  "items": {
+                    "type": "object",
+                    "required": ["native_name", "rate"],
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "native_name": {
+                        "type": "string",
+                        "description": "本地名称"
+                      },
+                      "rate": {
+                        "type": "number",
+                        "description": "表示每一单位的主币种兑换的此币种的数量"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "languages": {
+            "type": "array",
+            "description": "语言",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "description": "语言代码",
+                  "type": "string"
+                },
+                "native_name": {
+                  "type": "string",
+                  "description": "本地名称"
+                },
+                "name": {
+                  "description": "名称",
+                  "$ref": "#/$defs/string_array"
+                }
+              }
+            }
+          },
+          "timezone": {
+            "type": ["number", "array"],
+            "description": "时区定义",
+            "examples": [8, -8, -1.5],
+            "items": {
+              "type": "number"
+            }
+          },
+          "format": {
+            "description": "格式定义，不包括货币格式",
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "object",
+                "properties": {
+                  "decimal_separator": {
+                    "type": "string",
+                    "description": "小数分隔符，默认为 ."
+                  },
+                  "group_separator": {
+                    "type": "string",
+                    "description": "数值分组分隔符，默认为 ,"
+                  },
+                  "group_sizes": {
+                    "type": ["integer", "array"],
+                    "description": "数值分组长度，默认为 3",
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              "long_date": {
+                "type": "string",
+                "description": "长日期格式",
+                "examples": ["YYYY-MM-DD"]
+              },
+              "short_date": {
+                "type": "string",
+                "description": "短日期格式",
+                "examples": ["YY-MM-DD"]
+              },
+              "full": {
+                "type": "string",
+                "description": "完整的日期时间格式",
+                "examples": ["YYYY-MM-DD hh:mm:ss"]
+              },
+              "short_time": {
+                "type": "string",
+                "description": "短时间格式",
+                "examples": ["h:mm"]
+              },
+              "long_time": {
+                "type": "string",
+                "description": "长时间格式",
+                "examples": ["hh:mm:ss"]
+              }
+            }
+          },
+          "regions":{
+            "description": "",
+            "oneOf": [
+              {
+                "type": "string",
+                "description": "从外部加载下级区域定义数据，此处指示外部来源链接"
+              },
+              {
+                "$ref": "#/properties/regions"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

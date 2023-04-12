@@ -1,0 +1,228 @@
+{
+  "$schema": "https://open.scrud.dev/schema/regions.v1.json",
+  "$comment": "国内区域信息列表",
+  "tags":[],
+  "regions": [
+    {
+      "native_name": "北京市",
+      "short_name": "京",
+      "postal": "110100",
+      "telephone": "10",
+      "regions": [
+        {
+           "native_name": "东城区",
+           "short_name": "东城",
+           "postal": "110101"
+        },
+        {
+           "native_name": "西城区",
+           "short_name": "西城",
+           "postal": "110102"
+        },
+        {
+           "native_name": "朝阳区",
+           "short_name": "朝阳",
+           "postal": "110105"
+        },
+        {
+           "native_name": "丰台区",
+           "short_name": "丰台",
+           "postal": "110106"
+        },
+        {
+           "native_name": "石景山区",
+           "short_name": "石景山",
+           "postal": "110107"
+        },
+        {
+           "native_name": "海淀区",
+           "short_name": "海淀",
+           "postal": "110108"
+        },
+        {
+           "native_name": "门头沟区",
+           "short_name": "门头沟",
+           "postal": "110109"
+        },
+        {
+           "native_name": "房山区",
+           "short_name": "房山",
+           "postal": "110111"
+        },
+        {
+           "native_name": "通州区",
+           "short_name": "通州",
+           "postal": "110112"
+        },
+        {
+           "native_name": "顺义区",
+           "short_name": "顺义",
+           "postal": "110113"
+        },
+        {
+           "native_name": "昌平区",
+           "short_name": "昌平",
+           "postal": "110114"
+        },
+        {
+           "native_name": "大兴区",
+           "short_name": "大兴",
+           "postal": "110115"
+        },
+        {
+           "native_name": "怀柔区",
+           "short_name": "怀柔",
+           "postal": "110116"
+        },
+        {
+           "native_name": "平谷区",
+           "short_name": "平谷",
+           "postal": "110117"
+        },
+        {
+           "native_name": "密云县",
+           "short_name": "密云",
+           "postal": "110228"
+        },
+        {
+           "native_name": "延庆县",
+           "short_name": "延庆",
+           "postal": "110229"
+        }
+     ]
+    },
+    {
+      "native_name": "天津市",
+      "short_name": "津",
+      "postal": "120000",
+      "regions": [
+        {
+          "native_name": "和平区",
+          "short_name": "和平",
+          "postal": "120101"
+        },
+        {
+          "native_name": "河东区",
+          "short_name": "河东",
+          "postal": "120102"
+        },
+        {
+          "native_name": "河西区",
+          "short_name": "河西",
+          "postal": "120103"
+        },
+        {
+          "native_name": "南开区",
+          "short_name": "南开",
+          "postal": "120104"
+        },
+        {
+          "native_name": "河北区",
+          "short_name": "河北",
+          "postal": "120105"
+        },
+        {
+          "native_name": "红桥区",
+          "short_name": "红桥",
+          "postal": "120106"
+        },
+        {
+          "native_name": "东丽区",
+          "short_name": "东丽",
+          "postal": "120110"
+        },
+        {
+          "native_name": "西青区",
+          "short_name": "西青",
+          "postal": "120111"
+        },
+        {
+          "native_name": "津南区",
+          "short_name": "津南",
+          "postal": "120112"
+        },
+        {
+          "native_name": "北辰区",
+          "short_name": "北辰",
+          "postal": "120113"
+        },
+        {
+          "native_name": "武清区",
+          "short_name": "武清",
+          "postal": "120114"
+        },
+        {
+          "native_name": "宝坻区",
+          "short_name": "宝坻",
+          "postal": "120115"
+        },
+        {
+          "native_name": "滨海新区",
+          "short_name": "滨海新区",
+          "postal": "120116"
+        },
+        {
+          "native_name": "宁河县",
+          "short_name": "宁河",
+          "postal": "120221"
+        },
+        {
+          "native_name": "静海县",
+          "short_name": "静海",
+          "postal": "120223"
+        },
+        {
+          "native_name": "蓟县",
+          "short_name": "蓟县",
+          "postal": "120225"
+        }
+      ]
+    },
+    {
+      "native_name": "广东省",
+      "regions": [
+        {
+          "native_name": "广州市",
+          "telephone": "20"
+        },
+        {
+          "native_name": "深圳市",
+          "telephone": "755"
+        },
+        {
+          "native_name": "珠海市",
+          "telephone": "756",
+          "regions": [
+            {
+              "native_name": "香洲区"
+            },
+            {
+              "native_name": "金湾区"
+            },
+            {
+              "native_name": "斗门区"
+            },
+            {
+              "native_name": "保税区"
+            },
+            {
+              "native_name": "高新区"
+            },
+            {
+              "native_name": "横琴新区"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "native_name": "四川省",
+      "regions": [
+        {
+          "native_name": "成都市",
+          "telephone": "28"
+        }
+      ]
+    }
+  ]
+}
